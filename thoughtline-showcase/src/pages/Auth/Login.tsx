@@ -7,12 +7,35 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add authentication logic here
-    console.log("Email:", email, "Password:", password);
-    navigate("/home");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Login failed");
+        setLoading(false);
+        return;
+      }
+
+      alert("Login successful!");
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -22,35 +45,13 @@ const Login = () => {
         <h2>Login to TLD Atlas</h2>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit">Login</button>
+          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+          <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+          <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
         </form>
 
-        {/* ✅ CORRECT CLASS NAME */}
-        <p className="forgot-password">
-          <span onClick={() => navigate("/forgot-password")}>
-            Forgot password?
-          </span>
-        </p>
-
         <p className="signup-link">
-          Don't have an account?{" "}
-          <span onClick={() => navigate("/signup")}>Sign Up</span>
+          Don't have an account? <span onClick={() => navigate("/signup")}>Sign Up</span>
         </p>
       </div>
     </div>
