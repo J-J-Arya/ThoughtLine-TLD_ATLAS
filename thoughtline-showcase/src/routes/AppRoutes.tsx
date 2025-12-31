@@ -4,7 +4,7 @@ import Splash from "../pages/Splash/Splash";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 import Home from "../pages/Home/Home";
-import AddProject from "../components/projects/AddProject";
+// import AddProject from "../components/projects/AddProject";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 
@@ -23,7 +23,7 @@ const AppRoutes = () => {
 
         {/* App */}
         <Route path="/home" element={<Home />} />
-        <Route path="/add-project" element={<AddProject />} />
+        {/* <Route path="/add-project" element={<AddProject />} /> */}
       </Routes>
     </BrowserRouter>
   );
