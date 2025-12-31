@@ -27,3 +27,4 @@ const ProjectCard = ({ name, client, status, summary }: ProjectProps) => {
 };
 
 export default ProjectCard;
+// test
