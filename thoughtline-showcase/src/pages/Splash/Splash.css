@@ -1,16 +1,20 @@
-/* Container */
+/* ===== Container ===== */
 .splash-container {
-  height: 100vh;
-  background: linear-gradient(135deg, #149680, #01060f);
+  height: 100vh;               /* full viewport height */
+  width: 100vw;                /* full viewport width */
+  background: linear-gradient(135deg, #149680, #01060f); /* existing gradient */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  color: #fcfcfc;
 }
 
 /* ===== CENTER LOGO ===== */
 .center-logo {
+  max-width: 90%;             /* ensures logo shrinks on smaller screens */
   width: 500px;
   margin-bottom: 30px;
 }
@@ -30,62 +34,45 @@
   }
 }
 
-.companyLogo{
+/* ===== Company Logo ===== */
+.companyLogo {
   position: absolute;
-  bottom: 20px;   /* spacing from bottom */
-  right: 20px;    /* spacing from right */
-  width: 120px;   /* adjust as needed */
+  bottom: 20px;
+  right: 20px;
+  width: 120px;
   opacity: 0.9;
 }
 
-/* ===== ICON-ONLY LOADER ===== */
-.loading-orbit {
-  width: 56px;
-  height: 56px;
-  position: relative;
-  margin-top: 10px;
-}
-
-.loading-orbit span {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #dee4df;
+/* ===== SPINNING LOADER ===== */
+.spinner {
+  margin-top: 20px;          /* space below logo/text */
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(252, 252, 252, 0.2); /* light transparent border */
+  border-top: 5px solid #fcfcfc;              /* spinner color */
   border-radius: 50%;
-  animation: orbit 1.4s infinite ease-in-out;
+  animation: spin 1s linear infinite;
 }
 
-.loading-orbit span:nth-child(1) {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.loading-orbit span:nth-child(2) {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  animation-delay: -0.2s;
-}
-
-.loading-orbit span:nth-child(3) {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  animation-delay: -0.4s;
-}
-
-@keyframes orbit {
+/* Spin animation */
+@keyframes spin {
   0% {
-    transform: scale(0.6);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
+    transform: rotate(0deg);
   }
   100% {
-    transform: scale(0.6);
-    opacity: 0.5;
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+  .center-logo {
+    width: 70%;                /* shrink logo on smaller screens */
+  }
+
+  .spinner {
+    width: 35px;
+    height: 35px;
+    border-width: 4px;
   }
 }

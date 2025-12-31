@@ -25,11 +25,7 @@ const Splash = () => {
       />
 
       {/* Loading button */}
-      <div className="loading-orbit">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <div className="spinner"></div>
 
 
       {/* Bottom-right logo */}

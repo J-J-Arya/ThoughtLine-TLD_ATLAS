@@ -1,13 +1,17 @@
 /* ===== Container ===== */
 .home-container {
-  padding: 20px 40px;
-  min-height: 100vh; /* full height */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;          /* full viewport height */
+  width: 100vw;               /* full width */
+  padding: 20px;              /* reduced padding for responsiveness */
   background: linear-gradient(135deg, #149680, #141820 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
-  color: #060505e6;
+  color: #ffffff;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;         /* prevent horizontal scroll */
+  box-sizing: border-box;
 }
 
 /* Gradient animation */
@@ -40,12 +44,14 @@
   margin-bottom: 20px;
   position: relative;
   z-index: 1; /* above overlay */
+  flex-wrap: wrap; /* wrap on smaller screens */
 }
 
 /* ===== Filter Tabs ===== */
 .filter-tabs {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap; /* wrap buttons on small screens */
 }
 
 .filter-tabs button {
@@ -85,10 +91,11 @@
 /* ===== Project Grid ===== */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 /* Optional card hover enhancement */
@@ -102,4 +109,71 @@
 .project-grid > *:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 15px;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .filter-tabs button {
+    padding: 6px 12px;
+  }
+
+  .add-project-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================================= */
+/* ===== Add Project Overlay (MODAL) ===== */
+/* ========================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Modal container */
+.overlay-content {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  animation: overlayPop 0.25s ease;
+}
+
+/* Modal animation */
+@keyframes overlayPop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Scrollbar styling (optional polish) */
+.overlay-content::-webkit-scrollbar {
+  width: 6px;
+}
+.overlay-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }

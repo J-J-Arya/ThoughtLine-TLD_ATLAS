@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../components/layout/Navbar";
 import PageWrapper from "../../components/layout/PageWrapper";
 import ProjectGrid from "../../components/projects/ProjectGrid";
+import AddProject from "../../components/projects/AddProject";
 
 import { fetchProjects } from "../../services/projectService";
 import "./Home.css";
@@ -19,13 +19,14 @@ export interface Project {
 }
 
 const Home = () => {
-  const navigate = useNavigate();
-
   const [projects, setProjects] = useState<Project[]>([]);
   const [filtered, setFiltered] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<ProjectStatus | "All">("All");
+
+  // 🔹 NEW: modal control
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     loadProjects();
@@ -88,7 +89,7 @@ const Home = () => {
           {/* ADD PROJECT BUTTON */}
           <button
             className="add-project-btn"
-            onClick={() => navigate("/add-project")}
+            onClick={() => setShowForm(true)}
           >
             + Add Project
           </button>
@@ -96,9 +97,22 @@ const Home = () => {
 
         {/* PROJECT GRID */}
         <ProjectGrid projects={filtered} loading={loading} />
+
+        {/* 🔹 ADD PROJECT OVERLAY */}
+        {showForm && (
+          <div className="overlay" onClick={() => setShowForm(false)}>
+            <div
+              className="overlay-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <AddProject closeForm={() => setShowForm(false)} />
+            </div>
+          </div>
+        )}
       </div>
     </PageWrapper>
   );
 };
 
 export default Home;
+

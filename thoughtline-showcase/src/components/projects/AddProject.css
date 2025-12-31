@@ -1,34 +1,47 @@
-.add-project-page {
-  min-height: 100vh;
-  padding: 40px;
-  background: linear-gradient(135deg, #141820, #149680);
-  color: #fff;
-}
-
-.add-project-page h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.add-project-form {
+/* ===== MODAL CONTENT (NO FULLSCREEN BACKDROP) ===== */
+.add-project-modal {
+  width: 100%;
   max-width: 600px;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 30px;
   border-radius: 12px;
+  padding: 30px;
+  background: linear-gradient(135deg, #141820, #149680);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: #ffffff;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff3c2f;
+}
+
+/* ===== FORM LAYOUT ===== */
+.add-project-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+/* Inputs */
 .add-project-form input,
-.add-project-form select,
-.add-project-form textarea {
-  background: rgba(255, 255, 255, 0.1);
+.add-project-form textarea,
+.add-project-form select {
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 12px;
-  border-radius: 8px;
-  color: white;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #ffffff;
 }
 
 .add-project-form input::placeholder,
@@ -36,94 +49,19 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* ===== TEAM MEMBERS ===== */
-
-.team-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.team-section label {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-.team-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.team-row input {
-  flex: 1;
-}
-
-.remove-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.remove-btn:hover {
-  background: rgba(255, 0, 0, 0.2);
-  border-color: #ff3c2f;
-}
-
-/* Add member button */
-.add-member-btn {
-  align-self: flex-start;
-  background: transparent;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.add-member-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* ===== FILE UPLOAD ===== */
-
-.file-upload {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.file-upload label {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-.file-upload input[type="file"] {
-  padding: 8px;
-  background: transparent;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== SUBMIT BUTTON ===== */
-
+/* Submit button */
 .add-project-form button[type="submit"] {
-  margin-top: 10px;
-  background: #e10600;
-  color: white;
-  padding: 12px;
+  background: linear-gradient(135deg, #e10600, #ff3c2f);
   border: none;
+  padding: 12px;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .add-project-form button[type="submit"]:hover {
-  background: #ff3c2f;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(225, 6, 0, 0.6);
 }
