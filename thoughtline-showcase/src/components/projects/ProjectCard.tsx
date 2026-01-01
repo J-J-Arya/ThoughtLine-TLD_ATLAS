@@ -1,3 +1,36 @@
+// import { motion } from "framer-motion";
+// import "./ProjectCard.css";
+
+// interface ProjectProps {
+//   name: string;
+//   client: string;
+//   status: "Completed" | "Ongoing" | "Upcoming";
+//   summary: string;
+// }
+
+// const ProjectCard = ({ name, client, status, summary }: ProjectProps) => {
+//   return (
+//     <motion.div
+//       className="project-card"
+//       whileHover={{ scale: 1.05 }}
+//       transition={{ type: "spring", stiffness: 200 }}
+//     >
+//       <span className={`status ${status.toLowerCase()}`}>
+//         {status}
+//       </span>
+
+//       <h3>{name}</h3>
+//       <p className="client">{client}</p>
+//       <p className="summary">{summary}</p>
+//     </motion.div>
+//   );
+// };
+
+// export default ProjectCard;
+
+// //testing
+
+
 import { motion } from "framer-motion";
 import "./ProjectCard.css";
 
@@ -6,9 +39,16 @@ interface ProjectProps {
   client: string;
   status: "Completed" | "Ongoing" | "Upcoming";
   summary: string;
+  teamMembers: string[];
 }
 
-const ProjectCard = ({ name, client, status, summary }: ProjectProps) => {
+const ProjectCard = ({
+  name,
+  client,
+  status,
+  summary,
+  teamMembers,
+}: ProjectProps) => {
   return (
     <motion.div
       className="project-card"
@@ -22,10 +62,15 @@ const ProjectCard = ({ name, client, status, summary }: ProjectProps) => {
       <h3>{name}</h3>
       <p className="client">{client}</p>
       <p className="summary">{summary}</p>
+
+      {/* Team members (not styled yet, just safe) */}
+      {teamMembers.length > 0 && (
+        <div className="team">
+          {teamMembers.join(", ")}
+        </div>
+      )}
     </motion.div>
   );
 };
 
 export default ProjectCard;
-
-//testing
