@@ -1,0 +1,165 @@
+.project-details-container {
+  width: 100vw;
+  min-height: 100vh;
+
+  padding: 60px 80px;
+  color: #ffffff;
+
+  /* Full-screen gradient like Home */
+  background: linear-gradient(
+    135deg,
+    #149680 0%,
+    #0f766e 50%,
+    #064e3b 100%
+  );
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Inner content wrapper for readability */
+.project-details-content {
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Header section */
+.details-header h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* Status badge */
+.status {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: 22px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.status.completed {
+  background-color: #22c55e;
+  color: #022c22;
+}
+
+.status.ongoing {
+  background-color: #3b82f6;
+  color: #020617;
+}
+
+.status.upcoming {
+  background-color: #f59e0b;
+  color: #2e1b05;
+}
+
+/* Glass info card */
+.project-info {
+  padding: 36px 40px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Text styles */
+.client {
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+.summary {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* Section heading */
+.project-info h3 {
+  margin-top: 18px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Team members */
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.team-member {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: #ecfeff;
+}
+
+/* Back button */
+.back-btn {
+  margin-top: 20px;
+  align-self: flex-start;
+
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* Loading */
+.loading {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+  color: #ecfeff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-details-container {
+    padding: 32px 20px;
+  }
+
+  .details-header h1 {
+    font-size: 2rem;
+  }
+
+  .project-info {
+    padding: 24px;
+  }
+}

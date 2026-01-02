@@ -2,56 +2,58 @@
 .home-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;          /* full viewport height */
-  width: 100vw;               /* full width */
-  padding: 20px;              /* reduced padding for responsiveness */
+  min-height: 100vh;
+  width: 100vw;
+  padding: 20px;
   background: linear-gradient(135deg, #149680, #141820 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   color: #ffffff;
   position: relative;
-  overflow-x: hidden;         /* prevent horizontal scroll */
+  overflow-x: hidden;
   box-sizing: border-box;
 }
 
-/* Gradient animation */
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* Diagonal overlay */
 .home-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 8px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 8px);
   pointer-events: none;
 }
 
-/* ===== Header (Filters + Add Button) ===== */
+/* ===== Header ===== */
 .home-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   position: relative;
-  z-index: 1; /* above overlay */
-  flex-wrap: wrap; /* wrap on smaller screens */
+  z-index: 1;
 }
 
 /* ===== Filter Tabs ===== */
 .filter-tabs {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap; /* wrap buttons on small screens */
 }
 
 .filter-tabs button {
@@ -66,8 +68,30 @@
 
 .filter-tabs button.active,
 .filter-tabs button:hover {
-  background: #e10600; /* F1 red */
+  background: #e10600;
   border-color: #e10600;
+}
+
+/* ===== Search Input ===== */
+.project-search-input {
+  width: 360px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  outline: none;
+  justify-self: center;
+}
+
+.project-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.project-search-input:focus {
+  border-color: #e10600;
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.25);
 }
 
 /* ===== Add Project Button ===== */
@@ -88,81 +112,33 @@
   box-shadow: 0 10px 24px rgba(225, 6, 0, 0.6);
 }
 
-/* ========================================================= */
-/* ===== Center Search Bar (ADDED) ===== */
-/* ========================================================= */
-
-.project-search-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0 25px;
-  position: relative;
-  z-index: 1;
-}
-
-.project-search-input {
-  width: 340px;
-  max-width: 90%;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.35);
-  color: #ffffff;
-  font-size: 14px;
-  outline: none;
-  transition: border 0.25s ease, box-shadow 0.25s ease;
-}
-
-.project-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.project-search-input:focus {
-  border-color: #e10600;
-  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.25);
-}
-
 /* ===== Project Grid ===== */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px;
   position: relative;
   z-index: 1;
   width: 100%;
 }
 
-/* Optional card hover enhancement */
-.project-grid > * {
+.project-grid>* {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   padding: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-grid > *:hover {
+.project-grid>*:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
-/* ===== Responsive adjustments ===== */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .home-container {
-    padding: 15px;
-  }
-
-  .project-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  .home-header {
+    grid-template-columns: 1fr;
     gap: 15px;
-  }
-
-  .filter-tabs button {
-    padding: 6px 12px;
-  }
-
-  .add-project-btn {
-    padding: 8px 14px;
-    font-size: 0.9rem;
   }
 
   .project-search-input {
@@ -170,10 +146,7 @@
   }
 }
 
-/* ========================================================= */
-/* ===== Add Project Overlay (MODAL) ===== */
-/* ========================================================= */
-
+/* ===== Overlay ===== */
 .overlay {
   position: fixed;
   inset: 0;
@@ -185,7 +158,6 @@
   z-index: 9999;
 }
 
-/* Modal container */
 .overlay-content {
   width: 100%;
   max-width: 680px;
@@ -195,19 +167,18 @@
   animation: overlayPop 0.25s ease;
 }
 
-/* Modal animation */
 @keyframes overlayPop {
   from {
     opacity: 0;
     transform: scale(0.95) translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
 
-/* Scrollbar styling (optional polish) */
 .overlay-content::-webkit-scrollbar {
   width: 6px;
 }
