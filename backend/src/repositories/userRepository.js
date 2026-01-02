@@ -1,9 +1,10 @@
 const db = require('../config/db');
 
-const createUser = (username, email, hashedPassword, otp) => {
+const createUser = (email, hashedPassword, otp) => {
   return new Promise((resolve, reject) => {
-    const query = 'INSERT INTO users (username, email, password, otp) VALUES (?, ?, ?, ?)';
-    db.query(query, [username, email, hashedPassword, otp], (err, result) => {
+    const query =
+      'INSERT INTO users (email, password, otp) VALUES (?, ?, ?)';
+    db.query(query, [email, hashedPassword, otp], (err, result) => {
       if (err) return reject(err);
       resolve(result);
     });

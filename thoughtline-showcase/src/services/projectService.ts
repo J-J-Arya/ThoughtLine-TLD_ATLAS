@@ -59,10 +59,6 @@
 // };
 
 
-
-
-
-
 export type ProjectStatus = "Completed" | "Ongoing" | "Upcoming";
 
 export interface Project {
@@ -71,7 +67,7 @@ export interface Project {
   client: string;
   status: ProjectStatus;
   summary: string;
-  teamMembers: string[]; // ✅ ALWAYS PRESENT
+  teamMembers: string[];
 }
 
 const API_BASE = "http://localhost:5000/api/projects";

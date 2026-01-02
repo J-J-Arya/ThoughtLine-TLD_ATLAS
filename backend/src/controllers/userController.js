@@ -11,8 +11,8 @@ const {
 ============================ */
 const signupController = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const result = await signup(username, email, password);
+    const {email, password } = req.body;
+    const result = await signup(email, password);
     res.status(200).json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });
