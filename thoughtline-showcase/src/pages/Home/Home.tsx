@@ -17,7 +17,6 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<ProjectStatus | "All">("All");
 
-  // modal control
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -32,13 +31,10 @@ const Home = () => {
     setLoading(true);
     try {
       const data = await fetchProjects();
-
-      // 🛡 SAFETY: ensure teamMembers always exists
       const normalized = data.map((p) => ({
         ...p,
         teamMembers: p.teamMembers ?? [],
       }));
-
       setProjects(normalized);
       setFiltered(normalized);
     } catch (err) {
@@ -68,8 +64,7 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      {/* EXISTING NAVBAR (UNCHANGED) */}
-      <Navbar search={search} onSearchChange={setSearch} />
+      <Navbar />
 
       <div className="home-container">
         {/* TOP BAR */}
@@ -86,6 +81,15 @@ const Home = () => {
             ))}
           </div>
 
+          {/* SEARCH BAR — MOVED INTO HEADER */}
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="project-search-input header-search"
+          />
+
           {/* ADD PROJECT BUTTON */}
           <button
             className="add-project-btn"
@@ -93,17 +97,6 @@ const Home = () => {
           >
             + Add Project
           </button>
-        </div>
-
-        {/* ✅ ADDED: CENTER SEARCH BAR */}
-        <div className="project-search-wrapper">
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="project-search-input"
-          />
         </div>
 
         {/* PROJECT GRID */}
