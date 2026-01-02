@@ -9,8 +9,6 @@ const {
   resetPassword
 } = require('../controllers/userController');
 
-console.log("USER ROUTES FILE LOADED");
-
 router.post('/signup', signup);
 router.post('/verify-otp', verifyOtp);
 router.post('/login', login);

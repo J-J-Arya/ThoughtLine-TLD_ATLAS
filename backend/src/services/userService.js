@@ -27,7 +27,7 @@ const signup = async (username, email, password) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-  await createUser(username, email, hashedPassword, otp);
+  await createUser(email, hashedPassword, otp);
   await sendOtp(email, otp);
 
   return { message: 'OTP sent to your email' };
@@ -88,12 +88,11 @@ const forgotPassword = async (email) => {
 
   // Generate token and expiry
   const token = crypto.randomBytes(32).toString('hex');
-  const expiry = new Date(Date.now() + 15 * 60 * 1000) // 15 minutes from now
-    .toISOString().slice(0, 19).replace('T', ' '); // MySQL DATETIME format
+  const expiry = new Date(Date.now() + 15 * 60 * 1000);
 
   await saveResetToken(email, token, expiry);
 
-  const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+  const resetLink = `http://localhost:5173/reset-password?token=${token}`;
   console.log('Reset link:', resetLink); // Debugging log
 
   await sendPasswordResetLink(email, resetLink);

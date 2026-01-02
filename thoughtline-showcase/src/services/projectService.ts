@@ -6,7 +6,7 @@ export interface Project {
   client: string;
   status: ProjectStatus;
   summary: string;
-  teamMembers: string[]; // ✅ ALWAYS PRESENT
+  teamMembers: string[];
 }
 
 // 🔌 Backend detached – mock in-memory data
@@ -59,7 +59,6 @@ export const createProject = async (project: {
 
 /* ============================
    ✅ ADD THIS (NEW)
-============================ */
 export const getProjectById = async (
   id: number
 ): Promise<Project | null> => {
