@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import logo from "../../assets/images/project-logo-cropped.png";
 
 interface NavbarProps {
   search?: string;
@@ -8,8 +9,14 @@ interface NavbarProps {
 const Navbar = ({ search = "", onSearchChange }: NavbarProps) => {
   return (
     <nav className="navbar">
-      <h1 className="logo">TLD Atlas</h1>
+      {/* LOGO */}
+      <img
+        src={logo}
+        alt="TLD Atlas"
+        className="navbar-logo"
+      />
 
+      {/* SEARCH */}
       {onSearchChange && (
         <input
           type="text"

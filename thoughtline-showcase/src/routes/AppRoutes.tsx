@@ -4,9 +4,9 @@ import Splash from "../pages/Splash/Splash";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 import Home from "../pages/Home/Home";
-// import AddProject from "../components/projects/AddProject";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import ProjectDetails from "../pages/ProjectDetails/ProjectDetails"; // ✅ ADDED
 
 const AppRoutes = () => {
   return (
@@ -23,7 +23,7 @@ const AppRoutes = () => {
 
         {/* App */}
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/add-project" element={<AddProject />} /> */}
+        <Route path="/projects/:id" element={<ProjectDetails />} /> {/* ✅ ADDED */}
       </Routes>
     </BrowserRouter>
   );
