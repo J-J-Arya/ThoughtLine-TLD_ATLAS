@@ -28,6 +28,7 @@ const ProjectGrid = ({ projects, loading = false }: ProjectGridProps) => {
       {projects.map((project) => (
         <ProjectCard
           key={project.id}
+          id={project.id}             
           name={project.name}
           client={project.client}
           status={project.status}
