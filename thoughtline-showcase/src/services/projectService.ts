@@ -59,7 +59,6 @@ export const createProject = async (project: {
 
 /* ============================
    ✅ ADD THIS (NEW)
-============================ */
 export const getProjectById = async (
   id: number
 ): Promise<Project | null> => {
