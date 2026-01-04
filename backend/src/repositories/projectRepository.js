@@ -4,7 +4,7 @@ const db = require("../config/db");
  * Create a new project with optional team members
  */
 exports.createProject = async (project) => {
-  const { name, client, status, summary, teamMembers } = project;
+  const { name, client, status = "Ongoing", summary = "", teamMembers = [] } = project;
 
   // 1️⃣ Insert project
   const [result] = await db.promise().query(
@@ -15,8 +15,8 @@ exports.createProject = async (project) => {
 
   const projectId = result.insertId;
 
-  // 2️⃣ Insert team members (if any)
-  if (teamMembers && teamMembers.length > 0) {
+  // 2️⃣ Insert team members if any
+  if (teamMembers.length > 0) {
     const values = teamMembers.map((member) => [projectId, member]);
 
     await db.promise().query(
@@ -33,7 +33,7 @@ exports.createProject = async (project) => {
     client,
     status,
     summary,
-    teamMembers: teamMembers || [],
+    teamMembers,
   };
 };
 
