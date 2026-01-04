@@ -13,7 +13,6 @@
 // exports.getAllProjects = async () => {
 //   return await projectRepository.getAllProjects();
 // };
-
 const projectRepository = require("../repositories/projectRepository");
 
 /**
