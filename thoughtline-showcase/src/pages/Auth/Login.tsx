@@ -1,74 +1,74 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../Auth/Auth.css";
-import logo from "../../assets/images/logo.png";
-import { toast } from "react-toastify";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import "../Auth/Auth.css";
+// import logo from "../../assets/images/logo.png";
+// import { toast } from "react-toastify";
 
-const Login = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+// const Login = () => {
+//   const navigate = useNavigate();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
 
-    if (loading) return;
-    setLoading(true);
+//     if (loading) return;
+//     setLoading(true);
 
 
-    setTimeout(() => {
-      toast.success("Login successful!");
-      navigate("/home");
-      setLoading(false);
-    }, 1000);
-  };
+//     setTimeout(() => {
+//       toast.success("Login successful!");
+//       navigate("/home");
+//       setLoading(false);
+//     }, 1000);
+//   };
 
-  return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <img src={logo} alt="TLD Atlas Logo" className="auth-logo" />
-        <h2>Login to TLD Atlas</h2>
+//   return (
+//     <div className="auth-container">
+//       <div className="auth-box">
+//         <img src={logo} alt="TLD Atlas Logo" className="auth-logo" />
+//         <h2>Login to TLD Atlas</h2>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
+//         <form onSubmit={handleSubmit}>
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             value={email}
+//             onChange={e => setEmail(e.target.value)}
+//             required
+//           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             value={password}
+//             onChange={e => setPassword(e.target.value)}
+//             required
+//           />
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
+//           <button type="submit" disabled={loading}>
+//             {loading ? "Logging in..." : "Login"}
+//           </button>
 
-          {/* Forgot Password */}
-          <div className="forgot-password">
-            <span onClick={() => navigate("/forgot-password")}>
-              Forgot Password?
-            </span>
-          </div>
-        </form>
+//           {/* Forgot Password */}
+//           <div className="forgot-password">
+//             <span onClick={() => navigate("/forgot-password")}>
+//               Forgot Password?
+//             </span>
+//           </div>
+//         </form>
 
-        <p className="signup-link">
-          Don't have an account?{" "}
-          <span onClick={() => navigate("/signup")}>Sign Up</span>
-        </p>
-      </div>
-    </div>
-  );
-};
+//         <p className="signup-link">
+//           Don't have an account?{" "}
+//           <span onClick={() => navigate("/signup")}>Sign Up</span>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default Login;
+// export default Login;
 
 
 
