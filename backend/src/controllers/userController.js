@@ -4,15 +4,20 @@ const {
   login,
   forgotPassword,
   resetPassword
-} = require('../services/userService');
+} = require("../services/userService");
 
 /* ============================
    SIGNUP CONTROLLER
 ============================ */
 const signupController = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const result = await signup(username, email, password);
+    // 🔍 TEMP DEBUG (do NOT remove yet)
+    console.log("HEADERS:", req.headers["content-type"]);
+    console.log("BODY:", req.body);
+
+    const { email, password } = req.body;
+
+    const result = await signup(email, password);
     res.status(200).json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -25,6 +30,7 @@ const signupController = async (req, res) => {
 const verifyOtpController = async (req, res) => {
   try {
     const { email, otp } = req.body;
+
     const result = await verifyUserOtp(email, otp);
     res.status(200).json(result);
   } catch (err) {
@@ -38,6 +44,7 @@ const verifyOtpController = async (req, res) => {
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const result = await login(email, password);
     res.status(200).json(result);
   } catch (err) {
@@ -51,6 +58,7 @@ const loginController = async (req, res) => {
 const forgotPasswordController = async (req, res) => {
   try {
     const { email } = req.body;
+
     const result = await forgotPassword(email);
     res.status(200).json(result);
   } catch (err) {
@@ -63,17 +71,15 @@ const forgotPasswordController = async (req, res) => {
 ============================ */
 const resetPasswordController = async (req, res) => {
   try {
-    const { token, newPassword } = req.body;
-    const result = await resetPassword(token, newPassword);
+    const { token, password } = req.body;
+
+    const result = await resetPassword(token, password);
     res.status(200).json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
-/* ============================
-   EXPORTS
-============================ */
 module.exports = {
   signup: signupController,
   verifyOtp: verifyOtpController,
