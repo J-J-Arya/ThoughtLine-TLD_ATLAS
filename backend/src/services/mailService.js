@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 // ✅ Send OTP
 const sendOtp = (email, otp) => {
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: 'TLD_ATLAS <${process.env.EMAIL}>',
     to: email,
     subject: 'Your OTP for TLD Atlas',
     text: `Your OTP is: ${otp}`
@@ -29,7 +29,7 @@ const sendOtp = (email, otp) => {
 // ✅ Send Password Reset Link
 const sendPasswordResetLink = (email, resetLink) => {
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: 'TLD_ATLAS <${process.env.EMAIL}>',
     to: email,
     subject: 'Reset your TLD Atlas password',
     text: `Click the link to reset your password:\n\n${resetLink}\n\nThis link expires in 15 minutes.`
