@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./ProjectCard.css";
 
 interface ProjectProps {
-  id: number; // ✅ ADDED
+  id: number;
   name: string;
   client: string;
   status: "Completed" | "Ongoing" | "Upcoming";
   summary: string;
-  teamMembers: string[];
+  teamMembers: string[]; 
 }
 
 const ProjectCard = ({
@@ -17,7 +17,7 @@ const ProjectCard = ({
   client,
   status,
   summary,
-  teamMembers,
+  teamMembers, 
 }: ProjectProps) => {
   const navigate = useNavigate();
 
@@ -26,21 +26,21 @@ const ProjectCard = ({
       className="project-card"
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 200 }}
-      onClick={() => navigate(`/projects/${id}`)}  // ✅ ADDED
+      onClick={() => navigate(`/projects/${id}`)}
     >
+      {/* Status badge */}
       <span className={`status ${status.toLowerCase()}`}>
         {status}
       </span>
 
+      {/* Project name */}
       <h3>{name}</h3>
-      <p className="client">{client}</p>
+
+      {/* ✅ Description FIRST */}
       <p className="summary">{summary}</p>
 
-      {teamMembers.length > 0 && (
-        <div className="team">
-          {teamMembers.join(", ")}
-        </div>
-      )}
+      {/* ✅ Client AFTER description */}
+      <p className="client">{client}</p>
     </motion.div>
   );
 };

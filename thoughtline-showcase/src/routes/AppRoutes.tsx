@@ -6,7 +6,7 @@ import Signup from "../pages/Auth/Signup";
 import Home from "../pages/Home/Home";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
-import ProjectDetails from "../pages/ProjectDetails/ProjectDetails"; // ✅ ADDED
+import ProjectDetails from "../pages/ProjectDetails/ProjectDetails"; 
 
 const AppRoutes = () => {
   return (
@@ -23,7 +23,7 @@ const AppRoutes = () => {
 
         {/* App */}
         <Route path="/home" element={<Home />} />
-        <Route path="/projects/:id" element={<ProjectDetails />} /> {/* ✅ ADDED */}
+        <Route path="/projects/:id" element={<ProjectDetails />} /> 
       </Routes>
     </BrowserRouter>
   );

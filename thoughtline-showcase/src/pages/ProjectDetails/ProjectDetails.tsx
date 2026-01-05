@@ -50,7 +50,7 @@ const ProjectDetails = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {/* 🔑 IMPORTANT: Inner content wrapper */}
+      {/*  Inner content wrapper */}
       <div className="project-details-content">
         
         {/* Header */}
