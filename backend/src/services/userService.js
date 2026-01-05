@@ -44,7 +44,8 @@ const signup = async (email, password) => {
   await createUser(email, hashedPassword, otp);
   await sendOtp(email, otp);
 
-  return { message: "OTP sent to your email" };
+  return { message: "OTP sent to your email" ,otp};
+
 };
 
 //VERIFY OTP
@@ -102,7 +103,7 @@ const forgotPassword = async (email) => {
 
   // Generate token
   const token = crypto.randomBytes(32).toString("hex");
-  console.log("Generated reset token:", token); // 🔹 Debug: copy this for testing
+  console.log("Generated reset token:", token); 
 
   // Expiry: 15 minutes from now
   const expiry = new Date(Date.now() + 15 * 60 * 1000);
