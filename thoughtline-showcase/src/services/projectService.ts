@@ -76,42 +76,6 @@
 
 
 
-// export type ProjectStatus = "Completed" | "Ongoing" | "Upcoming";
-
-// export interface Project {
-//   id: number;
-//   name: string;
-//   client: string;
-//   status: ProjectStatus;
-//   summary: string;
-//   teamMembers: string[]; // ✅ ALWAYS PRESENT
-// }
-
-// const API_BASE = "http://localhost:5000/api/projects";
-
-// export const fetchProjects = async (): Promise<Project[]> => {
-//   const res = await fetch(API_BASE);
-//   if (!res.ok) throw new Error("Failed to fetch projects");
-//   return res.json();
-// };
-
-// export const createProject = async (project: {
-//   name: string;
-//   client: string;
-//   status: ProjectStatus;
-//   summary: string;
-//   teamMembers: string[];
-// }) => {
-//   const res = await fetch(API_BASE, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(project),
-//   });
-
-//   if (!res.ok) throw new Error("Failed to create project");
-//   return res.json();
-// };
-
 export type ProjectStatus = "Completed" | "Ongoing" | "Upcoming";
 
 export interface Project {
