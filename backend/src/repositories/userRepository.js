@@ -1,8 +1,6 @@
 const db = require("../config/db");
 
-/* ============================
-   CREATE USER
-============================ */
+//CREATE USER
 const createUser = (email, hashedPassword, otp) => {
   return new Promise((resolve, reject) => {
     const query =
@@ -14,9 +12,7 @@ const createUser = (email, hashedPassword, otp) => {
   });
 };
 
-/* ============================
-   FIND USER BY EMAIL
-============================ */
+//FIND USER BY EMAIL
 const findUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
     const query = "SELECT * FROM users WHERE email = ?";
@@ -27,9 +23,7 @@ const findUserByEmail = (email) => {
   });
 };
 
-/* ============================
-   UPDATE OTP (RESEND OTP)
-============================ */
+//UPDATE OTP (RESEND OTP)
 const updateUserOtp = (email, otp) => {
   return new Promise((resolve, reject) => {
     const query = "UPDATE users SET otp = ? WHERE email = ?";
@@ -40,9 +34,7 @@ const updateUserOtp = (email, otp) => {
   });
 };
 
-/* ============================
-   VERIFY OTP & ACTIVATE USER
-============================ */
+//VERIFY OTP & ACTIVATE USER
 const verifyOtpAndActivateUser = (email, otp) => {
   return new Promise((resolve, reject) => {
     const query = `
@@ -57,9 +49,7 @@ const verifyOtpAndActivateUser = (email, otp) => {
   });
 };
 
-/* ============================
-   SAVE RESET TOKEN
-============================ */
+//SAVE RESET TOKEN
 const saveResetToken = (email, token, expiry) => {
   return new Promise((resolve, reject) => {
     const query =
@@ -84,9 +74,7 @@ const findUserByResetToken = (token) => {
 };
 
 
-/* ============================
-   UPDATE PASSWORD
-============================ */
+//UPDATE PASSWORD
 const updatePassword = (userId, hashedPassword) => {
   return new Promise((resolve, reject) => {
     const query =

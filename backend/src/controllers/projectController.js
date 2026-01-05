@@ -1,29 +1,5 @@
-// const projectService = require("../services/projectService");
-
-// exports.createProject = async (req, res) => {
-//   try {
-//     const project = await projectService.createProject(req.body);
-//     res.status(201).json(project);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Failed to create project" });
-//   }
-// };
-
-// exports.getAllProjects = async (req, res) => {
-//   try {
-//     const projects = await projectService.getAllProjects();
-//     res.status(200).json(projects);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Failed to fetch projects" });
-//   }
-// };
 const projectService = require("../services/projectService");
 
-/**
- * POST /projects
- */
 exports.createProject = async (req, res) => {
   try {
     const { name, client, status, summary, teamMembers } = req.body;
@@ -41,9 +17,6 @@ exports.createProject = async (req, res) => {
   }
 };
 
-/**
- * GET /projects
- */
 exports.getAllProjects = async (req, res) => {
   try {
     const projects = await projectService.getAllProjects();
