@@ -16,8 +16,7 @@ const ProjectCard = ({
   name,
   client,
   status,
-  summary,
-  teamMembers, 
+  summary, 
 }: ProjectProps) => {
   const navigate = useNavigate();
 
