@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 
 import Navbar from "../../components/layout/Navbar";
 import PageWrapper from "../../components/layout/PageWrapper";
 import ProjectGrid from "../../components/projects/ProjectGrid";
-import AddProject from "../../components/projects/AddProject";
 
 import { fetchProjects } from "../../services/projectService";
 import type { Project, ProjectStatus } from "../../services/projectService";
@@ -18,6 +18,8 @@ const Home = () => {
   const [status, setStatus] = useState<ProjectStatus | "All">("All");
 
   const [showForm, setShowForm] = useState(false);
+
+  const navigate = useNavigate(); // ✅ ADDED
 
   useEffect(() => {
     loadProjects();
@@ -81,7 +83,7 @@ const Home = () => {
             ))}
           </div>
 
-          {/* SEARCH BAR — MOVED INTO HEADER */}
+          {/* SEARCH BAR */}
           <input
             type="text"
             placeholder="Search projects..."
@@ -93,7 +95,7 @@ const Home = () => {
           {/* ADD PROJECT BUTTON */}
           <button
             className="add-project-btn"
-            onClick={() => setShowForm(true)}
+            onClick={() => navigate("/add-project")} // ✅ CHANGED
           >
             + Add Project
           </button>
@@ -102,17 +104,13 @@ const Home = () => {
         {/* PROJECT GRID */}
         <ProjectGrid projects={filtered} loading={loading} />
 
-        {/* ADD PROJECT OVERLAY */}
+        {/* ADD PROJECT OVERLAY (UNCHANGED, JUST NOT USED NOW) */}
         {showForm && (
           <div className="overlay" onClick={() => setShowForm(false)}>
             <div
               className="overlay-content"
               onClick={(e) => e.stopPropagation()}
             >
-              <AddProject
-                closeForm={() => setShowForm(false)}
-                onProjectAdded={loadProjects}
-              />
             </div>
           </div>
         )}
