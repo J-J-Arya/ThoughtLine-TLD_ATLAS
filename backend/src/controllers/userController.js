@@ -6,12 +6,10 @@ const {
   resetPassword
 } = require("../services/userService");
 
-/* ============================
-   SIGNUP CONTROLLER
-============================ */
+//SIGNUP
+
 const signupController = async (req, res) => {
   try {
-    // 🔍 TEMP DEBUG (do NOT remove yet)
     console.log("HEADERS:", req.headers["content-type"]);
     console.log("BODY:", req.body);
 
@@ -24,9 +22,9 @@ const signupController = async (req, res) => {
   }
 };
 
-/* ============================
-   VERIFY OTP CONTROLLER
-============================ */
+
+//VERIFY OTP
+
 const verifyOtpController = async (req, res) => {
   try {
     const { email, otp } = req.body;
@@ -38,9 +36,8 @@ const verifyOtpController = async (req, res) => {
   }
 };
 
-/* ============================
-   LOGIN CONTROLLER
-============================ */
+//LOGIN
+
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -52,9 +49,8 @@ const loginController = async (req, res) => {
   }
 };
 
-/* ============================
-   FORGOT PASSWORD CONTROLLER
-============================ */
+//FORGOT PASSWORD
+
 const forgotPasswordController = async (req, res) => {
   try {
     const { email } = req.body;
@@ -66,9 +62,8 @@ const forgotPasswordController = async (req, res) => {
   }
 };
 
-/* ============================
-   RESET PASSWORD CONTROLLER
-============================ */
+//RESET PASSWORD
+
 const resetPasswordController = async (req, res) => {
   try {
     const { token, password } = req.body;
