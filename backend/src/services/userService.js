@@ -16,9 +16,7 @@ const {
   sendPasswordResetLink
 } = require("./mailService");
 
-/* ============================
-   SIGNUP (EMAIL + PASSWORD)
-============================ */
+//SIGNUP
 const signup = async (email, password) => {
   if (!email || !password) {
     throw new Error("Email and password are required");
@@ -28,30 +26,29 @@ const signup = async (email, password) => {
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-  // ✅ Case 1: User exists & already verified
+  // Case 1: User exists & already verified
   if (existingUser && existingUser.is_verified) {
     throw new Error("Email already registered");
   }
 
-  // ✅ Case 2: User exists but NOT verified → resend OTP
+  // Case 2: User exists but NOT verified → resend OTP
   if (existingUser && !existingUser.is_verified) {
     await updateUserOtp(email, otp);
     await sendOtp(email, otp);
     return { message: "OTP resent to your email" };
   }
 
-  // ✅ Case 3: New user
+  // Case 3: New user
   const hashedPassword = await bcrypt.hash(password, 10);
 
   await createUser(email, hashedPassword, otp);
   await sendOtp(email, otp);
 
-  return { message: "OTP sent to your email" };
+  return { message: "OTP sent to your email" ,otp};
+
 };
 
-/* ============================
-   VERIFY OTP
-============================ */
+//VERIFY OTP
 const verifyUserOtp = async (email, otp) => {
   if (!email || !otp) {
     throw new Error("Email and OTP are required");
@@ -66,9 +63,7 @@ const verifyUserOtp = async (email, otp) => {
   return { message: "User verified successfully" };
 };
 
-/* ============================
-   LOGIN
-============================ */
+//LOGIN
 const login = async (email, password) => {
   if (!email || !password) {
     throw new Error("Email and password are required");
@@ -99,9 +94,7 @@ const login = async (email, password) => {
   };
 };
 
-/* ============================
-   FORGOT PASSWORD
-============================ */
+//FORGOT PASSWPRD
 const forgotPassword = async (email) => {
   if (!email) throw new Error("Email is required");
 
@@ -110,7 +103,7 @@ const forgotPassword = async (email) => {
 
   // Generate token
   const token = crypto.randomBytes(32).toString("hex");
-  console.log("Generated reset token:", token); // 🔹 Debug: copy this for testing
+  console.log("Generated reset token:", token); 
 
   // Expiry: 15 minutes from now
   const expiry = new Date(Date.now() + 15 * 60 * 1000);
@@ -127,9 +120,7 @@ const forgotPassword = async (email) => {
   return { message: "Password reset link sent to your email" };
 };
 
-/* ============================
-   RESET PASSWORD
-============================ */
+//RESET PASSWORD
 const resetPassword = async (token, newPassword) => {
   if (!token || !newPassword) throw new Error("Token and new password are required");
 
