@@ -16,7 +16,7 @@ const Login = () => {
     if (loading) return;
     setLoading(true);
 
-    // ✅ Frontend-only simulation
+
     setTimeout(() => {
       toast.success("Login successful!");
       navigate("/home");
@@ -51,7 +51,7 @@ const Login = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          {/* 🔴 Forgot Password */}
+          {/* Forgot Password */}
           <div className="forgot-password">
             <span onClick={() => navigate("/forgot-password")}>
               Forgot Password?

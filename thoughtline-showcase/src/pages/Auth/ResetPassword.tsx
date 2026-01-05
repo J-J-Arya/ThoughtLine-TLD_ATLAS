@@ -18,7 +18,7 @@ const ResetPassword = () => {
 
     console.log("Password reset successful");
 
-    // Later: backend reset logic
+
     navigate("/login");
   };
 

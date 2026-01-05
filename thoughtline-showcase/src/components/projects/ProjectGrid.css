@@ -6,11 +6,11 @@
 
   gap: 20px;
 
-  /* 🔥 CRITICAL FIX */
+  /*  CRITICAL FIX */
   justify-content: flex-start;
   align-content: flex-start;
 
-  width: fit-content;   /* 👈 IMPORTANT */
+  width: fit-content; 
 }
 
 
