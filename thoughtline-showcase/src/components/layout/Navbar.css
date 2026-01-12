@@ -3,15 +3,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background: transparent;
+  background:rgba(62, 126, 120, 0.926); 
+  backdrop-filter: blur(6px);
+
+  border-radius: 12px;
+  margin: 16px;
 }
 
-.logo {
-  color: var(--accent-green);
-  font-weight: 700;
-  letter-spacing: 1px;
+/* LOGO IMAGE */
+.navbar-logo {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
 }
 
+/* SEARCH INPUT */
 .nav-actions input {
   background: var(--card-black);
   border: 1px solid #222;

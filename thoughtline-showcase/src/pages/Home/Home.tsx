@@ -1,22 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 
 import Navbar from "../../components/layout/Navbar";
 import PageWrapper from "../../components/layout/PageWrapper";
 import ProjectGrid from "../../components/projects/ProjectGrid";
-import AddProject from "../../components/projects/AddProject";
 
 import { fetchProjects } from "../../services/projectService";
+import type { Project, ProjectStatus } from "../../services/projectService";
+
 import "./Home.css";
-
-export type ProjectStatus = "Completed" | "Ongoing" | "Upcoming";
-
-export interface Project {
-  id: number;
-  name: string;
-  client: string;
-  status: ProjectStatus;
-  summary: string;
-}
 
 const Home = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -25,8 +17,9 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<ProjectStatus | "All">("All");
 
-  // 🔹 NEW: modal control
   const [showForm, setShowForm] = useState(false);
+
+  const navigate = useNavigate(); // ✅ ADDED
 
   useEffect(() => {
     loadProjects();
@@ -40,8 +33,12 @@ const Home = () => {
     setLoading(true);
     try {
       const data = await fetchProjects();
-      setProjects(data);
-      setFiltered(data);
+      const normalized = data.map((p) => ({
+        ...p,
+        teamMembers: p.teamMembers ?? [],
+      }));
+      setProjects(normalized);
+      setFiltered(normalized);
     } catch (err) {
       console.error("Failed to fetch projects", err);
     } finally {
@@ -56,7 +53,7 @@ const Home = () => {
       result = result.filter((p) => p.status === status);
     }
 
-    if (search) {
+    if (search.trim()) {
       result = result.filter(
         (p) =>
           p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -69,7 +66,7 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <Navbar search={search} onSearchChange={setSearch} />
+      <Navbar />
 
       <div className="home-container">
         {/* TOP BAR */}
@@ -79,17 +76,26 @@ const Home = () => {
               <button
                 key={s}
                 className={status === s ? "active" : ""}
-                onClick={() => setStatus(s as any)}
+                onClick={() => setStatus(s as ProjectStatus | "All")}
               >
                 {s}
               </button>
             ))}
           </div>
 
+          {/* SEARCH BAR */}
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="project-search-input header-search"
+          />
+
           {/* ADD PROJECT BUTTON */}
           <button
             className="add-project-btn"
-            onClick={() => setShowForm(true)}
+            onClick={() => navigate("/add-project")} // ✅ CHANGED
           >
             + Add Project
           </button>
@@ -98,14 +104,13 @@ const Home = () => {
         {/* PROJECT GRID */}
         <ProjectGrid projects={filtered} loading={loading} />
 
-        {/* 🔹 ADD PROJECT OVERLAY */}
+        {/* ADD PROJECT OVERLAY (UNCHANGED, JUST NOT USED NOW) */}
         {showForm && (
           <div className="overlay" onClick={() => setShowForm(false)}>
             <div
               className="overlay-content"
               onClick={(e) => e.stopPropagation()}
             >
-              <AddProject closeForm={() => setShowForm(false)} />
             </div>
           </div>
         )}
@@ -115,4 +120,3 @@ const Home = () => {
 };
 
 export default Home;
-
